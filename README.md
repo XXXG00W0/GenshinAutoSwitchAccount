@@ -7,7 +7,7 @@
 ## 部署教程
 
 1. 安装 Python (>=3.8)
-2. 运行 [requirements.txt](https://github.com/XXXG00W0/GenshinAutoSwitchAccount/blob/main/requirements.txt)
+2. 运行 ```pip install requirements.txt```
 
 ## 可能遇到的问题
 
