@@ -1,0 +1,2 @@
+# GenshinAutoSwitchAccount
+基于Python的自动切换原神账号脚本
