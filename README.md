@@ -31,4 +31,4 @@ File "X:\<Python安装路径>\lib\site-packages\pymouse\windows.py", line 23, in
 ModuleNotFoundError: No module named 'pyhook'
 ```
 直接用```pip install pyhook```在我这并不是很好用<br>
-所以可以使用PyHook3替换pyhook，安装方法请看[这里](https://blog.csdn.net/weixin_45752790/article/details/112503807)
+所以可以使用PyHook3替换pyhook，安装方法请看[PyHook3 的下载与安装](https://blog.csdn.net/weixin_45752790/article/details/112503807)
