@@ -2,4 +2,6 @@ pandas==1.5.1
 pykeyboard==0.1.5
 pymouse==1.0
 PyUserInput==0.1.10
+pywin32==305
+win32gui==221.6
 #PyHook3==1.6.1
