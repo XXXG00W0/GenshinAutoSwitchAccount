@@ -12,7 +12,7 @@
 
 ## 可能遇到的问题
 
-### ```Python：ModuleNotFoundError: No module named 'windows'```
+### ```ModuleNotFoundError: No module named 'windows'```
 如果遇到这样的错误信息：
 ```  
 File "X:\<Python安装路径>\lib\site-packages\pymouse\__init__.py", line 92, in <module>
