@@ -1,4 +1,4 @@
 cd "." 
-@rem 若switch_account.py不在同一路径下，则需要修改双引号里的内容
+@rem 鑻ユ湰鎵瑰鐞嗘枃浠跺拰switch_account.py涓嶅湪鍚屼竴璺緞涓嬶紝鍒欓渶瑕佷慨鏀瑰弻寮曞彿閲岀殑鍐呭
 python "switch_account.py"
-timeout /t 10
+timeout /t 5
