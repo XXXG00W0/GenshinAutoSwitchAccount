@@ -10,11 +10,12 @@
 1. 安装 Python (>=3.8)<br>
 2. 运行 `pip install requirements.txt`<br>
 3. 首次启动前需要向`config.json`添加账密，以格式`"account":"password"`添加<br>
-4. 这一步可以不做，做了后就不会有两个窗口：<br>
+4. 修改`Switch Account.bat`的路径为当前文件夹的路径<br>
+5. 这一步可以不做，做了后就不会有两个窗口：<br>
    a. 右键`Switch Account.bat`添加快捷方式<br>
    b. 右键快捷方式，选择`属性`，选择`高级`<br>
    c. 勾选`用管理员身份运行`，点击`确定`，然后返回到`属性`窗口后再次点击`确定`<br>
-5. 双击```Switch Account.bat```或快捷方式即可启动脚本
+6. 双击```Switch Account.bat```或快捷方式即可启动脚本<br>
 
 ## 可能遇到的问题
 
