@@ -9,8 +9,8 @@
 
 1. 安装 Python (>=3.8)<br>
 2. 运行 ```pip install requirements.txt```<br>
-3. 首次启动前需要向config.json添加账密<br>
-   以格式```"account":"password"```添加
+3. 首次启动前需要向config.json添加账密，以格式```"account":"password"```添加<br>
+4. 双击```Switch Account.bat```即可启动脚本
 
 ## 可能遇到的问题
 
