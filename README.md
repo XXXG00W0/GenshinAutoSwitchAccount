@@ -7,10 +7,10 @@
 
 ## 部署教程
 
-1. 安装 Python (>=3.8)<br>
+1. 安装 `Python (>=3.8)`<br>
 2. 运行 `pip install requirements.txt`<br>
 3. 首次启动前需要向`config.json`添加账密，以格式`"account":"password"`添加<br>
-4. 修改`Switch Account.bat`的路径为当前文件夹的路径<br>
+4. 右键点击`Switch Account.bat`，选择`编辑`，将第一行引号内的路径改为当前文件夹的路径<br>
 5. 这一步可以不做，做了后就不会有两个窗口：<br>
    a. 右键`Switch Account.bat`添加快捷方式<br>
    b. 右键快捷方式，选择`属性`，选择`高级`<br>
