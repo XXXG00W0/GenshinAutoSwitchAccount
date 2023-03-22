@@ -261,7 +261,7 @@ def main(args, cfg):
     print(f'屏幕尺寸是 {width}*{height}')
     if width / height != 16 / 9:
         print(f'仅适配16:9的屏幕')
-        return
+        exit(1)
     elif f'{width}*{height}' not in cfg['resolution']:
         print(f'\'{width}*{height}\'不存在，将尝试转换')
         cfg['resolution'] = convertCoords(cfg['resolution'])
