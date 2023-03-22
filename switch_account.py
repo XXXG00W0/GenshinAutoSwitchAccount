@@ -224,7 +224,10 @@ def main(args, cfg):
             row = pswdDataFrame.iloc[accountIndex]  # iloc 位置索引，loc 标签索引
             account = row.loc['账号']
             password = row.loc['密码']
-            print("选定账户：\n", row.to_string())
+            if args.hide_password:
+                row.loc['密码'] = '********'
+            print("选定账户：")
+            print(row.to_string())
         except ValueError:
             print(f'"{accountIndex}"不是有效序号')
         except (KeyError, IndexError):
