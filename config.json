@@ -1,1 +1,155 @@
-{"account": {}, "resolution": {"2048*1152": {"size": [2048, 1152], "logOutPos": [1950, 1050], "logoutCheckYesButtonPos": [1150, 590], "accountPos": [1024, 400], "passwordPos": [1024, 530], "agreementCheckPos": [710, 660], "logInPos": [1024, 740]}, "default": {"size": [2048, 1152], "logOutPos": [1950, 1050], "logoutCheckYesButtonPos": [1150, 590], "accountPos": [1024, 400], "passwordPos": [1024, 530], "agreementCheckPos": [710, 660], "logInPos": [1024, 740]}, "2560*1440": {"size": [2560, 1440], "logOutPos": [2438, 1312], "logoutCheckYesButtonPos": [1438, 738], "accountPos": [1280, 500], "passwordPos": [1280, 662], "agreementCheckPos": [888, 825], "logInPos": [1280, 925]}, "1920*1080": {"size": [1920, 1080], "logOutPos": [1828, 984], "logoutCheckYesButtonPos": [1078, 553], "accountPos": [960, 375], "passwordPos": [960, 497], "agreementCheckPos": [666, 619], "logInPos": [960, 694]}, "1280*720": {"size": [1280, 720], "logOutPos": [1219, 656], "logoutCheckYesButtonPos": [719, 369], "accountPos": [640, 250], "passwordPos": [640, 331], "agreementCheckPos": [444, 412], "logInPos": [640, 462]}}}
+{
+  "account": {},
+  "resolution": {
+    "2048*1152": {
+      "size": [
+        2048,
+        1152
+      ],
+      "logOutPos": [
+        1950,
+        1050
+      ],
+      "logoutCheckYesButtonPos": [
+        1150,
+        590
+      ],
+      "accountPos": [
+        1024,
+        400
+      ],
+      "passwordPos": [
+        1024,
+        530
+      ],
+      "agreementCheckPos": [
+        710,
+        660
+      ],
+      "logInPos": [
+        1024,
+        740
+      ]
+    },
+    "default": {
+      "size": [
+        2048,
+        1152
+      ],
+      "logOutPos": [
+        1950,
+        1050
+      ],
+      "logoutCheckYesButtonPos": [
+        1150,
+        590
+      ],
+      "accountPos": [
+        1024,
+        400
+      ],
+      "passwordPos": [
+        1024,
+        530
+      ],
+      "agreementCheckPos": [
+        710,
+        660
+      ],
+      "logInPos": [
+        1024,
+        740
+      ]
+    },
+    "2560*1440": {
+      "size": [
+        2560,
+        1440
+      ],
+      "logOutPos": [
+        2438,
+        1312
+      ],
+      "logoutCheckYesButtonPos": [
+        1438,
+        738
+      ],
+      "accountPos": [
+        1280,
+        500
+      ],
+      "passwordPos": [
+        1280,
+        662
+      ],
+      "agreementCheckPos": [
+        888,
+        825
+      ],
+      "logInPos": [
+        1280,
+        925
+      ]
+    },
+    "1920*1080": {
+      "size": [
+        1920,
+        1080
+      ],
+      "logOutPos": [
+        1828,
+        984
+      ],
+      "logoutCheckYesButtonPos": [
+        1078,
+        553
+      ],
+      "accountPos": [
+        960,
+        375
+      ],
+      "passwordPos": [
+        960,
+        497
+      ],
+      "agreementCheckPos": [
+        666,
+        619
+      ],
+      "logInPos": [
+        960,
+        694
+      ]
+    },
+    "1280*720": {
+      "size": [
+        1280,
+        720
+      ],
+      "logOutPos": [
+        1219,
+        656
+      ],
+      "logoutCheckYesButtonPos": [
+        719,
+        369
+      ],
+      "accountPos": [
+        640,
+        250
+      ],
+      "passwordPos": [
+        640,
+        331
+      ],
+      "agreementCheckPos": [
+        444,
+        412
+      ],
+      "logInPos": [
+        640,
+        462
+      ]
+    }
+  }
+}
