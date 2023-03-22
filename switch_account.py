@@ -166,6 +166,7 @@ def printDataFrame(df, hide_password=True):
     tempdf['密码'] = hiddenPswd
     print(tempdf)
 
+
 def addAccount(cfg, args):
     continueAdd = True
     pswdDataFrame = toDataFrame(cfg)
@@ -183,6 +184,7 @@ def addAccount(cfg, args):
         if len(pswdDataFrame) == 0:
             print(f'当前账密信息为空，现在添加账密')
 
+        # todo: 添加检测输入是否符合要求（如：长度不能为0）
         altName = input('请输入昵称：')
         account = input('请输入账号：')
         pswd = input('请输入密码：')
@@ -191,8 +193,13 @@ def addAccount(cfg, args):
         printDataFrame(pswdDataFrame, args.hide_password)
 
         # 询问是否继续添加密码
-        if input('已添加，是否继续（是Y/否N）').lower() == 'n':
-            continueAdd = False
+        while 1:
+            out = input('已添加，是否继续（是Y/否N）').lower()
+            if out in ['y', 'yes', '是']:
+                break
+            elif out in ['n', 'no', '否']:
+                continueAdd = False
+                break
 
     return cfg
 
