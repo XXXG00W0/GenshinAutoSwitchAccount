@@ -1,5 +1,4 @@
-@rem 需要修改双引号里的路径
-cd "请改成储存该文件的路径" 
-@添加账号请在下一行的双引号最后添加 -a
+cd "�뽫switch_account.py�ļ����ڵ�·����д����" 
+echo ���������˺�������һ�е�˫����������� -a
 python "switch_account.py" -p
 timeout /t 10
