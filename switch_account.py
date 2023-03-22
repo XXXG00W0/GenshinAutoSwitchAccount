@@ -2,7 +2,7 @@ from pymouse import PyMouse
 from pykeyboard import PyKeyboard
 import win32api, win32con, win32gui, win32ui
 # import win32com.client keyboard, winsound
-import ctypes, sys, pandas, json, time
+import ctypes, sys, pandas, json, time, argparse, copy
 
 user32dll = ctypes.windll.LoadLibrary("C:\\Windows\\System32\\user32.dll")
 
@@ -147,13 +147,56 @@ def convertCoords(resolutionCfg):
     return resolutionCfg
 
 
-def main():
-    # 查询是否以管理员权限启动（原作者：https://blog.csdn.net/MemoryD/article/details/83148305）
-    if not isAdmin():
-        print("未使用管理员权限运行")
-        # 请求管理员权限
-        if sys.version_info[0] == 3:
-            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+def toDataFrame(cfg):
+    header = ['昵称', '账号', '密码']
+    # pandas.set_option('display.unicode.anbiguous_as_wide', True) 无法使用
+    pandas.set_option('display.unicode.east_asian_width', True)
+    pandas.set_option('display.width', 180)
+    pswdList = list([k, v[0], v[1]] for k, v in cfg['account'].items())
+    pswdDataFrame = pandas.DataFrame(pswdList, columns=header)
+    return pswdDataFrame
+
+
+def printDataFrame(df, hide_password=True):
+    if len(df.index) == 0:
+        print('表格为空')
+        return
+    tempdf = copy.deepcopy(df)
+    hiddenPswd = pandas.DataFrame([['********'] for i in range(len(tempdf.index))])
+    tempdf['密码'] = hiddenPswd
+    print(tempdf)
+
+def addAccount(cfg, args):
+    continueAdd = True
+    pswdDataFrame = toDataFrame(cfg)
+    # 储存了密码 且 用户需要添加密码 才打印
+    if len(pswdDataFrame) != 0 and args.add_account:
+        printDataFrame(pswdDataFrame, args.hide_password)
+    # 储存了密码 且 用户不需要添加密码 则返回，不添加账户
+    if not args.add_account and len(pswdDataFrame) != 0:
+        return cfg
+
+    # 如果添加账户 或 账户为空 或 还继续添加 则用户此次启动会添加密码
+    while continueAdd:
+
+        # 用户还没有密码
+        if len(pswdDataFrame) == 0:
+            print(f'当前账密信息为空，现在添加账密')
+
+        altName = input('请输入昵称：')
+        account = input('请输入账号：')
+        pswd = input('请输入密码：')
+        pswdDataFrame.loc[len(pswdDataFrame.index)] = [altName, account, pswd]
+        cfg['account'][altName] = [account, pswd]
+        printDataFrame(pswdDataFrame, args.hide_password)
+
+        # 询问是否继续添加密码
+        if input('已添加，是否继续（是Y/否N）').lower() == 'n':
+            continueAdd = False
+
+    return cfg
+
+def main(args, cfg):
 
     # 抓取原神窗口
     while True:
@@ -168,37 +211,24 @@ def main():
             print(f'原神程序指针：{genshinHwnd}')
             break
 
-    cfg = readConfig('./config.json')
-    if not cfg:
-        return
-
-    # # 读取账密csv文件（已弃用）
-    # pswdList = readPasswordFile('原神账密.csv')
-
     # 从cfg字典中读取账密
-    pswdList = list(cfg['account'].items())
-    while len(pswdList) == 0:
-        print(f'当前账密信息为空，现在添加账密')
-        account = input('请输入账号：')
-        pswd = input('请输入密码：')
-        pswdList.append([account, pswd])
-        cfg['account'][account] = pswd
-
-    print('账号密码如下：')
-    for i in range(1, len(pswdList) + 1):
-        print(f'{i}\t{pswdList[i - 1][0]}\t{pswdList[i - 1][1]}')
+    cfg = addAccount(cfg, args)
 
     # 询问账号索引，若索引错误则重新询问
+    pswdDataFrame = toDataFrame(cfg)
+    printDataFrame(pswdDataFrame, args.hide_password)
     while 1:
         try:
-            accountIndex = input('输入需要切换的账号索引：')
+            accountIndex = input('输入需要切换的账号序号：')
             accountIndex = int(accountIndex)
-            account, password = pswdList[accountIndex - 1]
-            print(f'选定账户\'{account}\'及密码\'{password}\'')
-        except IndexError:
-            print(f'输入的索引"{accountIndex}"不存在')
+            row = pswdDataFrame.iloc[accountIndex]  # iloc 位置索引，loc 标签索引
+            account = row.loc['账号']
+            password = row.loc['密码']
+            print("选定账户：\n", row.to_string())
         except ValueError:
-            print(f'"{accountIndex}"不是有效值')
+            print(f'"{accountIndex}"不是有效序号')
+        except (KeyError, IndexError):
+            print(f'输入的序号"{accountIndex}"不存在')
         else:
             break
 
@@ -263,8 +293,29 @@ def main():
     changeLanguage(genshinHwnd, 'ZH')
     time.sleep(8)
     # 点击登入游戏
-    # m.click(coordCfg['logInPos'][0], coordCfg['logInPos'][1])
+    m.click(coordCfg['logInPos'][0], coordCfg['logInPos'][1])
 
 
 if __name__ == '__main__':
-    main()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', '--add-account', action='store_true', help='若有该参数，则添加账密后再输入密码')
+    parser.add_argument('-p', '--hide-password', action='store_true', help='若有该参数，则不显示密码')
+    args = parser.parse_args()
+
+    # 查询是否以管理员权限启动（原作者：https://blog.csdn.net/MemoryD/article/details/83148305）
+    if not isAdmin():
+        print("未使用管理员权限运行，将无法填写账密")
+
+        # 请求管理员权限
+        # https://blog.csdn.net/weixin_42413844/article/details/120064752
+        # sys.version_info 是一个包含了版本号5个组成部分的元祖，
+        # 这5个部分分别是主要版本号（major）、次要版本号（minor）、微型版本号（micro）、发布级别（releaselevel）和序列号（serial）
+        if sys.version_info[0] == 3:
+            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+    else:
+        print("已使用管理员权限运行")
+    cfg = readConfig('./config.json')
+    if not cfg:
+        exit(1)
+    main(args, cfg)
