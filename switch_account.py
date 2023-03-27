@@ -323,6 +323,7 @@ if __name__ == '__main__':
         # 这5个部分分别是主要版本号（major）、次要版本号（minor）、微型版本号（micro）、发布级别（releaselevel）和序列号（serial）
         if sys.version_info[0] == 3:
             ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+        exit(1)
     else:
         print("已使用管理员权限运行")
     cfg = readConfig('./config.json')
